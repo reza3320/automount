@@ -18,20 +18,13 @@ Write the code bellow down in **automount.service**:
 
 ```
 [Unit]
-Description= automount service.
-After=network-online.target
-Wants=network-online.target systemd-networkd-wait-online.service
-
-StartLimitIntervalSec=500
-StartLimitBurst=5
+Description=Automount Python Service
+After=local-fs.target
 
 [Service]
-Type=simple
-ExecStart=python3 /etc/automount/automount.py
-Restart=on-failure
-RestartSec=5s
-
-
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/python3 /opt/automount/automount.py
 
 [Install]
 WantedBy=multi-user.target
