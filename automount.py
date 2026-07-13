@@ -1,21 +1,19 @@
 import os
 import time
 
-# Give the USB subsystem a few extra seconds to recognize the drive
+# Wait for the USB subsystem
 time.sleep(5)
 
-def mount_drive(device):
-    # systemd runs as root, so sudo is not needed
-    os.system(f"mount {device} /mnt/media")
+# Replace this with the actual UUID you got from the blkid command
+DRIVE_UUID = "a1b2c3d4-e5f6-7890"
 
-os.system("fdisk -l")
-print("fdisk command run")
+print("Attempting to mount by UUID...")
 
-if os.path.exists("/dev/sda1"):
-    mount_drive("/dev/sda1")
-    print("sda1 has mounted")
-elif os.path.exists("/dev/sdb1"):
-    mount_drive("/dev/sdb1")
-    print("sdb1 has mounted")
+# Tell Linux to find the drive by its ID and mount it
+# Note: systemd runs as root, so sudo is not needed here
+exit_code = os.system(f"mount UUID={DRIVE_UUID} /mnt/media")
+
+if exit_code == 0:
+    print("Drive successfully mounted!")
 else:
-    print("Neither sda1 nor sdb1 were found.")
+    print("Failed to mount the drive.")
