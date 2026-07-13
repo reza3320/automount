@@ -5,7 +5,7 @@ Choose a permanent directory for placing the Automount.py
 For example: ```/etc/automount/ ```
 
 
-Go to ```/lib/sysstemd/system``` Directory.
+Go to ```/lib/systemd/system``` Directory.
 
 
 **Step 2:**
@@ -39,7 +39,7 @@ WantedBy=multi-user.target
 
 ```cp automount.service /etc/systemd/system/automount.service```
 ```chmod 644 /etc/systemd/system/automount.service```
-```chhmod +x /etc/automount/automount.py```
+```chmod +x /etc/automount/automount.py```
 
 
 **Step3:**
