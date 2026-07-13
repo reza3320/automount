@@ -38,7 +38,7 @@ WantedBy=multi-user.target
 ```
 
 ```cp automount.service /etc/systemd/system/automount.service```
-```chmod 644 /etc/systemd/system/automount.service```
+```chmod 644 /lib/systemd/system/automount.service```
 ```chmod +x /etc/automount/automount.py```
 
 
